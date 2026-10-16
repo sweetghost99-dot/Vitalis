@@ -1,0 +1,30 @@
+{
+  "name": "vitalis",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000 --host 0.0.0.0",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 3000 --host 0.0.0.0",
+    "typecheck": "tsc",
+    "check:planner": "esbuild scripts/planner-check.ts --bundle --platform=node --format=cjs --log-level=error --outfile=.tmp/planner-check.cjs && node .tmp/planner-check.cjs",
+    "check:views": "esbuild scripts/ssr-smoke.tsx --bundle --platform=node --format=cjs --jsx=automatic --log-level=error --outfile=.tmp/ssr-smoke.cjs && node .tmp/ssr-smoke.cjs",
+    "check:store": "esbuild scripts/store-check.ts --bundle --platform=node --format=cjs --log-level=error --outfile=.tmp/store-check.cjs && node .tmp/store-check.cjs",
+    "check:data": "esbuild scripts/data-check.ts --bundle --platform=node --format=cjs --log-level=error --outfile=.tmp/data-check.cjs && node .tmp/data-check.cjs",
+    "check": "npm run typecheck && npm run check:data && npm run check:planner && npm run check:store && npm run check:views"
+  },
+  "dependencies": {
+    "lucide-react": "^0.454.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  }
+}
